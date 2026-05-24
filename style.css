@@ -275,11 +275,12 @@ abbr { text-decoration: none; }
 
 .cards {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
 .card {
+  min-width: 0;
   position: relative;
   text-align: center;
   padding: 2.5rem 1.5rem 2rem;
@@ -750,11 +751,24 @@ abbr { text-decoration: none; }
 .hidden { display: none !important; }
 
 /* ─── Responsive ────────────────────────────────────────────── */
+@media (max-width: 768px) {
+  .cards { grid-template-columns: 1fr; }
+}
+
 @media (max-width: 640px) {
-  .corner { width: 32px; height: 32px; }
-  .cards  { grid-template-columns: 1fr; }
+  .corner   { width: 32px; height: 32px; }
   .map-wrap { height: 280px; }
   .radio-group { flex-direction: column; }
+
+  .hero-logos {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .logo-sep {
+    width: 40px;
+    height: 1px;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
