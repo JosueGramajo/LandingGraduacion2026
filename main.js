@@ -16,7 +16,7 @@
  */
 async function submitToAPI(payload) {
 
-  /* ── Option A: Netlify Forms (default — zero config on Netlify) ─── */
+  /* ── Option A: Netlify Forms (default — zero config on Netlify) ─── 
   const formEl = document.getElementById('rsvp-form');
   const formData = new FormData(formEl);
 
@@ -27,6 +27,7 @@ async function submitToAPI(payload) {
   });
 
   if (!response.ok) throw new Error(`Netlify Forms error: ${response.status}`);
+  */
 
 
   /* ── Option B: Custom REST endpoint ──────────────────────────────
@@ -68,15 +69,20 @@ async function submitToAPI(payload) {
   ─────────────────────────────────────────────────────────────── */
 
 
-  /* ── Option D: Google Sheets via SheetDB ─────────────────────────
-  const response = await fetch('https://sheetdb.io/api/v1/YOUR_SHEETDB_ID', {
+  /* ── Option D: Google Sheets via SheetDB ─────────────────────────*/
+  const dateOptions = {
+    timeZone: 'America/Guatemala',
+    year: 'numeric', month: '2-digit', day: '2-digit',
+    hour: '2-digit', minute: '2-digit', second: '2-digit',
+  };
+  payload.fecha = new Date().toLocaleString('es-GT', dateOptions);
+  const response = await fetch('https://sheetdb.io/api/v1/fu4wcac8x8ppr', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ data: payload }),
   });
   if (!response.ok) throw new Error(`SheetDB error: ${response.status}`);
   return response.json();
-  ─────────────────────────────────────────────────────────────── */
 }
 
 
