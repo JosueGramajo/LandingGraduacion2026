@@ -184,3 +184,96 @@ const observer = new IntersectionObserver(
 );
 
 document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+
+/* ═══════════════════════════════════════════════════════════════
+   PHOTO GALLERY  (scroll-snap, portrait cards)
+   ═══════════════════════════════════════════════════════════════ */
+
+(function () {
+  const track    = document.getElementById('gallery-track');
+  const wrap     = document.getElementById('gallery-wrap');
+  const prevBtn  = document.getElementById('gal-prev');
+  const nextBtn  = document.getElementById('gal-next');
+  const dotsWrap = document.getElementById('gal-dots');
+
+  if (!track || !dotsWrap) return;
+
+  const slides = Array.from(track.querySelectorAll('.gallery-slide'));
+  const total  = slides.length;
+  let current  = 0;
+  let timer    = null;
+
+  // Build dots from slide count
+  slides.forEach((_, i) => {
+    const dot = document.createElement('button');
+    dot.className = 'gal-dot' + (i === 0 ? ' active' : '');
+    dot.setAttribute('role', 'tab');
+    dot.setAttribute('aria-label', `Foto ${i + 1}`);
+    dot.setAttribute('aria-selected', String(i === 0));
+    dot.addEventListener('click', () => goTo(i));
+    dotsWrap.appendChild(dot);
+  });
+
+  function updateDots(idx) {
+    dotsWrap.querySelectorAll('.gal-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === idx);
+      d.setAttribute('aria-selected', String(i === idx));
+    });
+  }
+
+  // Scroll offset of a slide relative to the track's scroll origin
+  function slideScrollLeft(index) {
+    const base = slides[0]?.offsetLeft ?? 0;
+    return (slides[index]?.offsetLeft ?? 0) - base;
+  }
+
+  function goTo(index) {
+    const prev = current;
+    current = ((index % total) + total) % total;
+    // Instant jump when wrapping so the track doesn't scroll backwards visibly
+    const wrapping = Math.abs(current - prev) > 1;
+    track.scrollTo({ left: slideScrollLeft(current), behavior: wrapping ? 'auto' : 'smooth' });
+    updateDots(current);
+    resetTimer();
+  }
+
+  prevBtn?.addEventListener('click', () => goTo(current - 1));
+  nextBtn?.addEventListener('click', () => goTo(current + 1));
+
+  // Keep `current` in sync when the user native-scrolls or swipes
+  let snapTimer;
+  track.addEventListener('scroll', () => {
+    clearTimeout(snapTimer);
+    snapTimer = setTimeout(() => {
+      const base = slides[0]?.offsetLeft ?? 0;
+      let closest = 0, minDist = Infinity;
+      slides.forEach((slide, i) => {
+        const dist = Math.abs((slide.offsetLeft - base) - track.scrollLeft);
+        if (dist < minDist) { minDist = dist; closest = i; }
+      });
+      if (closest !== current) { current = closest; updateDots(current); }
+    }, 80);
+  }, { passive: true });
+
+  // Auto-advance every 4.5 s
+  function startTimer() { timer = setInterval(() => goTo(current + 1), 4500); }
+  function resetTimer()  { clearInterval(timer); startTimer(); }
+  startTimer();
+
+  // Pause on hover
+  wrap?.addEventListener('mouseenter', () => clearInterval(timer));
+  wrap?.addEventListener('mouseleave', startTimer);
+
+  // Pause while the user is touching (native scroll handles the movement)
+  track.addEventListener('touchstart', () => clearInterval(timer), { passive: true });
+  track.addEventListener('touchend',   () => setTimeout(startTimer, 1200), { passive: true });
+
+  // Keyboard (← →) when gallery is visible in the viewport
+  document.addEventListener('keydown', e => {
+    const r = wrap?.getBoundingClientRect();
+    if (!r || r.top >= window.innerHeight || r.bottom <= 0) return;
+    if (e.key === 'ArrowLeft')  goTo(current - 1);
+    if (e.key === 'ArrowRight') goTo(current + 1);
+  });
+})();
