@@ -884,3 +884,98 @@ abbr { text-decoration: none; }
   .scroll-cue,
   .reveal { animation: none; transition: none; opacity: 1; transform: none; }
 }
+
+
+.collage {
+  max-width: 800px;
+  margin-inline: auto;
+  display: grid;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  gap: 0.5rem;
+  grid-template-rows: repeat(5, 1fr);
+  grid-template-columns: repeat(7, 1fr);
+
+  grid-template-areas:
+    "..   two two    two    three  four ..    .."
+    "one  two two    two    five   five six   .."
+    "..   two two    two    five   five seven .."
+    "nine ten ten eight ..  ..   ..    .."
+    "..   ten  ten eleven eleven     eleven   eleven    eleven";
+}
+
+.collage h4 {
+  text-align: end;
+  margin-right: 20px;
+  font-style: italic;
+}
+
+.collage > div {
+  overflow: hidden;
+  border-radius: 0.5rem;
+}
+
+.collage img {
+  width: 100%;
+  aspect-ratio: 1;
+  display: block;
+  object-fit: cover;
+  transition: all 0.5s ease-in-out;
+}
+
+.collage img:hover {
+  scale: 1.15;
+  rotate: 3deg;
+}
+
+.collage :nth-child(1) {
+  grid-area: one;
+}
+
+.collage :nth-child(2) {
+  grid-area: two;
+}
+
+.collage :nth-child(3) {
+  grid-area: three;
+}
+
+.collage :nth-child(4) {
+  grid-area: four;
+
+}
+
+.collage :nth-child(5) {
+  grid-area: five;
+}
+
+.collage :nth-child(6) {
+  grid-area: six;
+
+}
+
+.collage :nth-child(7) {
+  grid-area: seven;
+}
+
+.collage :nth-child(8) {
+  grid-area: eight;
+
+}
+
+.collage :nth-child(9) {
+  grid-area: nine;
+
+}
+
+.collage :nth-child(10) {
+  grid-area: ten;
+}
+
+.collage :nth-child(11) {
+  grid-area: eleven;
+}
+
+.collage :nth-child(12) {
+  grid-area: twelve;
+}
