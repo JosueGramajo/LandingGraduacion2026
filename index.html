@@ -72,29 +72,31 @@
   </section>
 
   <!-- GALLERY -->
-  <section class="gallery-section" id="galeria" aria-label="Galería de fotos">
-    <div class="gallery-wrap" id="gallery-wrap">
-      <div class="gallery-track" id="gallery-track">
-        <figure class="gallery-slide"><img src="assets/gallery/galeria-1.jpg" alt="Descire Sinay" draggable="false"></figure>
-        <figure class="gallery-slide"><img src="assets/gallery/galeria-2.jpg" alt="Descire Sinay" draggable="false"></figure>
-        <figure class="gallery-slide"><img src="assets/gallery/galeria-3.jpg" alt="Descire Sinay" draggable="false"></figure>
-        <figure class="gallery-slide"><img src="assets/gallery/galeria-4.jpg" alt="Descire Sinay" draggable="false"></figure>
-        <figure class="gallery-slide"><img src="assets/gallery/galeria-5.jpg" alt="Descire Sinay" draggable="false"></figure>
-        <figure class="gallery-slide"><img src="assets/gallery/galeria-6.jpg" alt="Descire Sinay" draggable="false"></figure>
-      </div>
-      <button class="gal-btn gal-prev" id="gal-prev" aria-label="Foto anterior">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M15 18l-6-6 6-6"/>
-        </svg>
-      </button>
-      <button class="gal-btn gal-next" id="gal-next" aria-label="Foto siguiente">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-          <path d="M9 18l6-6-6-6"/>
-        </svg>
-      </button>
-    </div>
-    <div class="gal-dots" id="gal-dots" role="tablist" aria-label="Navegación de fotos"></div>
+  <section class="collage" id="galeria" aria-label="Galería de fotos">
+        <div><img src="assets/gallery/galeria-8.jpg" alt="Descire Sinay" draggable="false"></div>
+        <div><img src="assets/gallery/galeria-2.jpg" alt="Descire Sinay" draggable="false"></div>
+        <div><img src="assets/gallery/galeria-3.jpg" alt="Descire Sinay" draggable="false"></div>
+
+        <div aria-hidden="true"></div>
+
+        <div><img src="assets/gallery/galeria-7.jpg" alt="Descire Sinay" draggable="false"></div>
+
+        <div aria-hidden="true"></div>
+
+        <div><img src="assets/gallery/galeria-6.jpg" alt="Descire Sinay" draggable="false"></div>
+
+        <div aria-hidden="true"></div>
+        <div aria-hidden="true"></div>
+
+        <div><img src="assets/gallery/galeria-5.jpg" alt="Descire Sinay" draggable="false"></div>
+
+          
+
+      <div><h4>"Id y enseñad a todos"</h4></div>        
+        
   </section>
+
+  
 
   <!-- DETAILS -->
   <section class="details" id="detalles">
@@ -115,6 +117,10 @@
     -->
 
     <div class="container">
+       <div class="section-head reveal">
+        <h2 class="section-title">Acto de graduación</h2>
+        <p class="section-desc">Acompáñanos en este momento tan especial</p>
+      </div>
       <div class="cards">
 
         <div class="card reveal">
@@ -303,7 +309,7 @@
         <div class="honeypot"><label>No llenar: <input name="bot-field" tabindex="-1" autocomplete="off"></label></div>
 
         <div class="form-group">
-          <label for="nombre">Nombre completo <abbr title="requerido">*</abbr></label>
+          <label for="nombre">Nombre y apellido <abbr title="requerido">*</abbr></label>
           <input
             type="text"
             id="nombre"
@@ -311,17 +317,6 @@
             placeholder="Tu nombre completo"
             autocomplete="name"
             required
-          >
-        </div>
-
-        <div class="form-group">
-          <label for="email">Correo electrónico <span class="opt">(opcional)</span></label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            placeholder="tu@correo.com"
-            autocomplete="email"
           >
         </div>
 
@@ -357,7 +352,8 @@
               <option value="2">2 personas</option>
               <option value="3">3 personas</option>
               <option value="4">4 personas</option>
-              <option value="5+">5 o más personas</option>
+              <option value="5">5 personas</option>
+              <option value="6">6 personas</option>
             </select>
             <svg class="select-arrow" viewBox="0 0 12 8" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
               <path d="M1 1l5 5 5-5"/>
