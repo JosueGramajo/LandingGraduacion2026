@@ -8,9 +8,10 @@
 /**
  * @param {Object} payload  – Cleaned form data
  * @param {string} payload.nombre
- * @param {string} [payload.email]
  * @param {'si'|'no'} payload.asistencia
  * @param {string} [payload.personas]
+ * @param {'si'|'no'} payload.asistencia_ninos
+ * @param {string} [payload.cantidad_ninos]
  * @param {string} [payload.mensaje]
  * @returns {Promise<void>}  – Resolves on success, throws on error
  */
@@ -96,12 +97,23 @@ const submitBtn   = document.getElementById('submit-btn');
 const btnText     = document.querySelector('.btn-text');
 const btnLoading  = document.querySelector('.btn-loading');
 const guestsGroup = document.getElementById('guests-group');
+const childrenGroup = document.getElementById('children-group');
+const childrenFormGroup = document.getElementById('form-group-children');
 
 /* Hide/show guests field based on attendance */
 form?.querySelectorAll('[name="asistencia"]').forEach(radio => {
   radio.addEventListener('change', () => {
     const attending = radio.value === 'si';
     guestsGroup.style.display = attending ? 'block' : 'none';
+    childrenGroup.style.display = attending ? 'block' : 'none';
+    childrenFormGroup.style.display = attending ? 'block' : 'none';
+  });
+});
+
+form?.querySelectorAll('[name="asistencia_ninos"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    const attending = radio.value === 'si';
+    childrenGroup.style.display = attending ? 'block' : 'none';
   });
 });
 

@@ -720,6 +720,12 @@ abbr { text-decoration: none; }
   flex-wrap: wrap;
 }
 
+.radio-group-children {
+  display: flex;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
 .radio-opt input {
   position: absolute;
   opacity: 0;
@@ -902,6 +908,7 @@ abbr { text-decoration: none; }
   .corner      { width: 32px; height: 32px; }
   .map-wrap    { height: 280px; }
   .radio-group { flex-direction: column; }
+  .radio-group-children { flex-direction: column; }
   /* Gallery: 1 portrait card per view on mobile, swipe-only */
   .gallery-wrap  { padding: 0 1rem; }
   .gallery-slide { flex: 0 0 100%; }
