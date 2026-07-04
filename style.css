@@ -6,6 +6,11 @@
   padding: 0;
 }
 
+@font-face {
+  font-family: 'GreatVibes';
+  src: url('assets/fonts/GreatVibes-Regular.ttf');
+}
+
 :root {
   --navy:          #09172e;
   --blue-deep:     #0f2244;
@@ -160,7 +165,7 @@ abbr { text-decoration: none; }
 }
 
 .grad-name {
-  font-family: var(--font-serif);
+  font-family: 'GreatVibes';
   font-weight: 400;
   font-size: clamp(3.2rem, 9vw, 7rem);
   line-height: 1.05;
@@ -386,7 +391,7 @@ abbr { text-decoration: none; }
   position: relative;
   text-align: center;
   padding: 2.5rem 1.5rem 2rem;
-  border: 1px solid var(--silver-pale);
+  border: 1px solid var(--silver-light);
   border-radius: 3px;
   transition: transform 0.3s var(--ease-out), box-shadow 0.3s ease;
 }
@@ -467,6 +472,40 @@ abbr { text-decoration: none; }
 }
 
 .section-desc.light { color: var(--silver); }
+
+.section-note {
+  margin-top: 1.25rem;
+  padding: 0.7rem 1.25rem;
+  background: rgba(58, 116, 204, 0.05);
+  border: 1px solid var(--silver-pale);
+  border-left: 3px solid var(--blue-mid);
+  border-radius: 3px;
+  font-size: 0.82rem;
+  color: var(--silver-dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.note-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--blue-mid);
+  text-decoration: none;
+  white-space: nowrap;
+  flex-shrink: 0;
+  transition: color 0.2s;
+}
+
+.note-link svg { width: 13px; height: 13px; }
+.note-link:hover { color: var(--blue-bright); }
 
 /* ─── Location ──────────────────────────────────────────────── */
 .location {
